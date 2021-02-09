@@ -1,5 +1,9 @@
 import { CiclaturaService } from '@/resource';
 
+//  Ogni quanti secondi è possibile fare nuova richiesta al server per i dati
+const PAUSA_DATI = 60
+
+let lastUpdate;
 const ciclaturaModule = {
   namespaced: true,
   state: {
@@ -8,13 +12,19 @@ const ciclaturaModule = {
   mutations: {
     SET_DATI(state, dati) {
       state.dati = dati;
+      lastUpdate = new Date();
     }
   },
   actions: {
     async loadDati({ commit, state }, data) {
-      let result = await CiclaturaService.getDatiCiclatura();
-      let parsedData = parseDatiServer(result);
-      commit('SET_DATI', parsedData);
+      if(checkTempo()){
+        let result = await CiclaturaService.getDatiCiclatura();
+        let parsedData = parseDatiServer(result);
+        commit('SET_DATI', parsedData);  
+      }else{
+        console.log('Dati da cache');
+        return;
+      }
     }
   },
   getters: {
@@ -32,6 +42,20 @@ const ciclaturaModule = {
     }
   }
 };
+
+/**
+ * Indica se è trascorso il tempo per eseguire una nuova richiesta dati
+ */
+function checkTempo(){
+  //  primo avvio
+  if(lastUpdate==undefined) return true;
+
+  // minore di secondi di pausa
+  if(lastUpdate-new Date() < PAUSA_DATI*1000) return false;
+
+  // maggiore di tempo di pausa
+  return true;
+}
 
 function parseDatiServer(dati) {
   let result = {};

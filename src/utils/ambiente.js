@@ -4,7 +4,7 @@
 export function getServerUrl() {
   const server = {
     casa: 'http://localhost:3000/',
-    lavoro: 'http://localhost:3000/',
+    lavoro: '/',
     gitpod: 'http://localhost:3000/'
   };
   return server[process.env.VUE_APP_AMB];
