@@ -27,29 +27,31 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang='scss'>
+@import '@/sass/colori';
+
 .stallo {
   border: 1px solid gray;
 }
 .error {
-  background-color: #ff2010;
+  background-color: $error;
 }
 .waiting {
-  background-color: #dcd5d5;
+  background-color: $waiting;
 }
 .end_ok {
-  background-color: #25fd25;
+  background-color: $end_ok;
 }
 .manual_stop {
-  background-color: orange;
+  background-color: $manual_stop;
 }
 .in_progress {
-  background-color: yellow;
+  background-color: $in_progress;
 }
 .safety_block {
-  background-color: #d657ec;
+  background-color: $safety_block;
 }
 .ready {
-  background-color: #00bcd4;
+  background-color: $ready;
 }
 </style>
