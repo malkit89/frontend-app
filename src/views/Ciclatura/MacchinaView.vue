@@ -15,7 +15,8 @@
 import Macchina from '@/components/Macchina';
 import { isFake } from '@/utils/ambiente';
 import { mapGetters, mapActions } from 'vuex';
-const CHECK_INTERVAL = 30000;
+import CiclaturaConfig from '@/configs/ciclatura.js';
+
 export default {
     name: 'MacchinaView',
     components: {
@@ -31,7 +32,7 @@ export default {
         this.loadDati();
         setInterval(() => {
             this.loadDati();
-        }, CHECK_INTERVAL);
+        }, CiclaturaConfig.INTERVALLO_CHECK);
     },
     computed: {
         ...mapGetters({

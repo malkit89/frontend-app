@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import CiclaturaPage from '@/views/Ciclatura/Index.vue';
 import MacchinaPage from '@/views/Ciclatura/MacchinaView.vue';
 import StalloDetailPage from '@/views/Ciclatura/StalloDetail.vue';
 
@@ -14,7 +13,6 @@ export default new Router({
       name: 'detail',
       component: StalloDetailPage,
       props: true
-    },
-    { path: '/ciclatura', name: 'ciclatura', component: CiclaturaPage }
+    }
   ]
 });
