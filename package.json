@@ -10,6 +10,7 @@
     "fix": "eslint --fix --ext .js,.vue src"
   },
   "dependencies": {
+    "@mdi/font": "^5.9.55",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "roboto-fontface": "*",

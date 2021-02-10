@@ -54,7 +54,7 @@ export default {
 .box-macchine {
     display: grid;
     width: 880px;
-    height: 550px;
+    height: 540px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     gap: 20px;
