@@ -55,7 +55,8 @@ function checkTempo() {
 
   // minore di secondi di pausa
   let diff = new Date() - lastUpdate;
-  if (diff < (PAUSA_DATI)) return false;
+  //  Aggiungo la tolleranza di 500ms sul tempo. Il tempo di loop interval è sempre minore di qualche ms rispetto alla pausa impostata
+  if (diff < (PAUSA_DATI - 500)) return false;
 
   // maggiore di tempo di pausa
   return true;

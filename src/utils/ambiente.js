@@ -7,7 +7,9 @@ export function getServerUrl() {
     lavoro: '/',
     gitpod: 'http://localhost:3000/'
   };
-  return server[process.env.VUE_APP_AMB];
+  //  In development scelgo url del server, in production frontend è servito sul url del server
+  let baseUrl = server[process.env.VUE_APP_AMB] || '/';
+  return baseUrl;
 }
 
 /**
