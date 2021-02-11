@@ -92,7 +92,7 @@ function parseDatiServer(dati) {
 function parseStallo(stallo) {
   return {
     macchina: stallo.Macchina,
-    nome: 'Stallo ' + stallo.Stallo,
+    nome: ' ' + stallo.Stallo,
     tecnico: stallo.Tecnico,
     prova: stallo.Prova,
     stato: stallo.Stato,
