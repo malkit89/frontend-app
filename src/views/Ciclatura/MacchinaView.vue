@@ -1,15 +1,46 @@
 <template>
     <div>
-        <div v-if="isFake">
-            <button @click="loadDati">Load dati</button>
-        </div>
         <div class="container">
-            <div class="box-macchine">
-                <macchina :config="l180" :titolo="'L180'"></macchina>
-                <macchina :config="l232" :titolo="'L232'"></macchina>
-                <macchina :config="l2020" :titolo="'L2020'"></macchina>
-                <macchina :titolo="'L2021'"></macchina>
-            </div>
+            <v-row v-if="isFake">
+                <v-col cols="12">
+                    <v-btn @click="loadDati" class="primary"
+                        >Load fake dati</v-btn
+                    >
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="3">
+                    <macchina
+                        :config="l180"
+                        :titolo="'L180'"
+                        :tipo1="'Socket'"
+                        :tipo2="'Switch'"
+                    ></macchina>
+                </v-col>
+                <v-col cols="3">
+                    <macchina
+                        :config="l232"
+                        :titolo="'L232'"
+                        :tipo1="'Socket'"
+                        :tipo2="'Switch'"
+                    ></macchina>
+                </v-col>
+                <v-col cols="3">
+                    <macchina
+                        :config="l2020"
+                        :titolo="'L2020'"
+                        :tipo1="'Switch'"
+                        :tipo2="'Switch'"
+                    ></macchina>
+                </v-col>
+                <v-col cols="3">
+                    <macchina
+                        :titolo="'L2021'"
+                        :tipo1="'Socket'"
+                        :tipo2="'Socket'"
+                    ></macchina>
+                </v-col>
+            </v-row>
         </div>
     </div>
 </template>
