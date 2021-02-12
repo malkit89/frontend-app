@@ -15,6 +15,10 @@ export const STATI_STALLI = {
   READY: 'Ready',
 }
 
+export const TIPI_PRODOTTO = {
+  SWITCH: 'Switch',
+  SOCKET: 'Socket'
+}
 
 let lastUpdate;
 export const CiclaturaModule = {
@@ -112,10 +116,12 @@ function parseStallo(stallo) {
     stato: getIdStato(stallo.Stato),
     start: stallo.Start,
     end: stallo.End,
-    timestamp: stallo['Export time']
+    timestamp: stallo['Export time'],
+    tipo: getTipoStallo(stallo.Macchina, stallo.Stallo)
   };
 }
 
+//  Resituisce la costante stato stallo in base al valore di testo indicato
 function getIdStato(stato) {
   let result = '';
   switch (stato) {
@@ -139,6 +145,26 @@ function getIdStato(stato) {
       break;
     case 'Safety block':
       result = STATI_STALLI.SAFETY_BLOCK
+      break;
+  }
+  return result;
+}
+
+//  Restituisce il tipo di stallo in base alla macchina e nome stallo
+function getTipoStallo(macchina, stallo) {
+  let result;
+  switch (macchina.toUpperCase()) {
+    case 'L2020':
+      result = TIPI_PRODOTTO.SWITCH;
+      break;
+    case 'L2021':
+      result = TIPI_PRODOTTO.SOCKET;
+      break;
+    case 'L180':
+      result = ['1', '2', '3', '4'].includes(stallo) ? TIPI_PRODOTTO.SOCKET : TIPI_PRODOTTO.SWITCH;
+      break;
+    case 'L232':
+      result = ['3', '4'].includes(stallo) ? TIPI_PRODOTTO.SOCKET : TIPI_PRODOTTO.SWITCH;
       break;
   }
   return result;
