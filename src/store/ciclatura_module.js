@@ -4,8 +4,20 @@ import CiclaturaConfig from '@/configs/ciclatura.js';
 //  Ogni quanti secondi è possibile fare nuova richiesta al server per i dati
 const PAUSA_DATI = parseInt(CiclaturaConfig.INTERVALLO_CHECK)
 
+//  Elenco dei possibili stati per gli stalli
+export const STATI_STALLI = {
+  IN_PROGRESS: 'In progress',
+  WAITING: 'Waiting',
+  END_OK: 'End ok',
+  MANUAL_STOP: 'Manual stop',
+  SAFETY_BLOCK: 'Safety block',
+  ERROR: 'Error',
+  READY: 'Ready',
+}
+
+
 let lastUpdate;
-const ciclaturaModule = {
+export const CiclaturaModule = {
   namespaced: true,
   state: {
     dati: []
@@ -19,7 +31,7 @@ const ciclaturaModule = {
   actions: {
     async loadDati({ commit, state }, data) {
       // Verifico se è intercorso il tempo stabilito dalla ultima richiesta
-      // Questo evita la chiamata al server quando viene caricata la apgina dei stalli, dopo il tasto back nella schermata detail stallo 
+      // Questo evita la chiamata al server quando viene caricata la apgina dei stalli, dopo il tasto back nella schermata detail stallo
       if (checkTempo()) {
         let result = await CiclaturaService.getDatiCiclatura();
         let parsedData = parseDatiServer(result);
@@ -75,6 +87,7 @@ function parseDatiServer(dati) {
   return result;
 }
 
+
 /**
  * Converto ogetto ricevuto dal server in ogetto stallo da usare in gui
  * @param {*} stallo : ricevuto da server
@@ -90,16 +103,43 @@ function parseDatiServer(dati) {
  * }
  */
 function parseStallo(stallo) {
+
   return {
     macchina: stallo.Macchina,
     nome: ' ' + stallo.Stallo,
     tecnico: stallo.Tecnico,
     prova: stallo.Prova,
-    stato: stallo.Stato,
+    stato: getIdStato(stallo.Stato),
     start: stallo.Start,
     end: stallo.End,
     timestamp: stallo['Export time']
   };
 }
 
-export default ciclaturaModule;
+function getIdStato(stato) {
+  let result = '';
+  switch (stato) {
+    case 'In progress':
+      result = STATI_STALLI.IN_PROGRESS
+      break;
+    case 'Waiting':
+      result = STATI_STALLI.WAITING
+      break;
+    case 'End ok':
+      result = STATI_STALLI.END_OK
+      break;
+    case 'Error':
+      result = STATI_STALLI.ERROR
+      break;
+    case 'Manual stop':
+      result = STATI_STALLI.MANUAL_STOP
+      break;
+    case 'Ready':
+      result = STATI_STALLI.READY
+      break;
+    case 'Safety block':
+      result = STATI_STALLI.SAFETY_BLOCK
+      break;
+  }
+  return result;
+}

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import PersonModule from './person_module';
 import MessageModule from './message_module';
-import CiclaturaModule from './ciclatura_module';
+import { CiclaturaModule } from './ciclatura_module';
 
 // Make vue aware of Vuex
 Vue.use(Vuex);
