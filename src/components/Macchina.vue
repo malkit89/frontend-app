@@ -10,15 +10,17 @@
                 </v-card>
             </v-col>
         </v-row>
+
+        <!-- Tolto la divisione colonne per tipo di prodotto perchè non tutte le macchine hanno numeri uguali di stalli prese e switch, questo crea layout non uniformi  -->
         <!-- Tipo prodotto 2 colonne -->
-        <v-row>
+        <!-- <v-row>
             <v-col cols="6">
                 <tipo-stallo :titolo="tipo1"></tipo-stallo>
             </v-col>
             <v-col cols="6">
                 <tipo-stallo :titolo="tipo2"></tipo-stallo>
             </v-col>
-        </v-row>
+        </v-row> -->
         <!-- Box stalli 1 colonna -->
         <v-row>
             <v-col>
@@ -39,12 +41,12 @@
 
 <script>
 import Stallo from './Stallo.vue';
-import TipoStallo from './TipoStallo.vue';
+// import TipoStallo from './TipoStallo.vue';
 export default {
     name: 'Macchina',
     components: {
-        stallo: Stallo,
-        tipoStallo: TipoStallo
+        stallo: Stallo
+        // tipoStallo: TipoStallo
     },
     props: ['config', 'titolo', 'tipo1', 'tipo2'],
     data() {

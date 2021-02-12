@@ -6,10 +6,9 @@
         v-bind:color="classeStato"
     >
         <v-row>
-            <v-col class="text-h4">{{ params.nome }}</v-col>
-        </v-row>
-        <v-row>
-            <v-col class="text-h5">{{ params.stato }}</v-col>
+            <v-col cols="12" class="d-block text-h4">{{ params.nome }}</v-col>
+            <v-col cols="12" class="pa-0 text-body-1">{{ params.stato }}</v-col>
+            <v-col cols="12" class="pa-0 text-caption">{{ params.tipo }}</v-col>
         </v-row>
     </v-card>
 </template>
@@ -26,11 +25,6 @@ export default {
     computed: {
         //  Restituisce la classe per impostare colore dello stallo
         classeStato: function () {
-            // let stato = this.params.stato;
-            // let classe = stato.replace(' ', '_').toLowerCase();
-            // if (classe == 'error') {
-            //     classe = 'errore';
-            // }
             let result = 'vuoto';
             let classe = this.params.stato;
             const fermo = [
@@ -65,7 +59,7 @@ export default {
 .stallo {
     border: 1px solid gray;
     height: 100px;
-    // width: 100px;
+    width: 200px;
 }
 .vuoto {
     background-color: white !important;
