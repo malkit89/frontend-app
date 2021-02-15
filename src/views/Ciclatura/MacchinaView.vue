@@ -9,7 +9,7 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col cols="3">
+                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <macchina
                         :config="l180"
                         :titolo="'L180'"
@@ -17,7 +17,7 @@
                         :tipo2="'Switch'"
                     ></macchina>
                 </v-col>
-                <v-col cols="3">
+                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <macchina
                         :config="l232"
                         :titolo="'L232'"
@@ -25,7 +25,7 @@
                         :tipo2="'Switch'"
                     ></macchina>
                 </v-col>
-                <v-col cols="3">
+                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <macchina
                         :config="l2020"
                         :titolo="'L2020'"
@@ -33,11 +33,12 @@
                         :tipo2="'Switch'"
                     ></macchina>
                 </v-col>
-                <v-col cols="3">
+                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <macchina
+                        :config="l2020"
                         :titolo="'L2021'"
-                        :tipo1="'Socket'"
-                        :tipo2="'Socket'"
+                        :tipo1="'Switch'"
+                        :tipo2="'Switch'"
                     ></macchina>
                 </v-col>
             </v-row>

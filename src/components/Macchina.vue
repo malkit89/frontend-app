@@ -25,12 +25,14 @@
         <v-row>
             <v-col>
                 <!-- Lista stalli con 2 colonne per riga -->
+                <!-- class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" -->
                 <v-row>
                     <v-col
-                        cols="6"
                         v-for="(stallo, index) in config"
                         :key="index"
+                        class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"
                     >
+                        <v-spacer></v-spacer>
                         <stallo :params="stallo"></stallo>
                     </v-col>
                 </v-row>

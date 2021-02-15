@@ -1,16 +1,36 @@
 <template>
-    <v-card
+    <v-card class="stallo" @click="handleClik" ref="stallo">
+        <v-list v-bind:color="classeStato">
+            <v-list-item>
+                <v-list-item-avatar tile>
+                    <v-img :src="imgTipo"></v-img>
+                </v-list-item-avatar>
+
+                <v-list-item-content>
+                    <v-list-item-title class="text-h4">{{
+                        params.nome
+                    }}</v-list-item-title>
+
+                    <v-list-item-subtitle class="">{{
+                        params.stato
+                    }}</v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
+    </v-card>
+
+    <!-- <v-card
         class="stallo"
         @click="handleClik"
         ref="stallo"
         v-bind:color="classeStato"
     >
-        <v-row>
+    </v-card> -->
+    <!-- <v-row>
             <v-col cols="12" class="d-block text-h4">{{ params.nome }}</v-col>
             <v-col cols="12" class="pa-0 text-body-1">{{ params.stato }}</v-col>
             <v-col cols="12" class="pa-0 text-caption">{{ params.tipo }}</v-col>
-        </v-row>
-    </v-card>
+        </v-row> -->
 </template>
 
 <script>
@@ -42,6 +62,12 @@ export default {
             }
             //  In tutti gli altri casi lo stallo è colorato di bianco
             return result;
+        },
+        imgTipo: function () {
+            if (this.params.tipo == 'Socket') {
+                return require('../assets/ciclatura/icon_socket.png');
+            }
+            return require('../assets/ciclatura/icon_switch.png');
         }
     },
     methods: {
@@ -58,8 +84,8 @@ export default {
 
 .stallo {
     border: 1px solid gray;
-    height: 100px;
-    width: 200px;
+    // height: 100px;
+    // width: 200px;
 }
 .vuoto {
     background-color: white !important;
