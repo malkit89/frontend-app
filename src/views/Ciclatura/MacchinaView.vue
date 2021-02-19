@@ -81,8 +81,8 @@ export default {
         ...mapActions({
             loadDati: 'Ciclatura/loadDati'
         }),
-        caricaDati() {
-            this.loadDati();
+        async caricaDati() {
+            await this.loadDati();
             this.macchine = [
                 {
                     config: this.l180,

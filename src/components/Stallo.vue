@@ -18,19 +18,6 @@
             </v-list-item>
         </v-list>
     </v-card>
-
-    <!-- <v-card
-        class="stallo"
-        @click="handleClik"
-        ref="stallo"
-        v-bind:color="classeStato"
-    >
-    </v-card> -->
-    <!-- <v-row>
-            <v-col cols="12" class="d-block text-h4">{{ params.nome }}</v-col>
-            <v-col cols="12" class="pa-0 text-body-1">{{ params.stato }}</v-col>
-            <v-col cols="12" class="pa-0 text-caption">{{ params.tipo }}</v-col>
-        </v-row> -->
 </template>
 
 <script>
