@@ -9,36 +9,14 @@
                 </v-col>
             </v-row>
             <v-row>
-                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <v-col
+                    :cols="sizeCols"
+                    v-for="(macchina, pos) in macchine"
+                    :key="pos"
+                >
                     <macchina
-                        :config="l180"
-                        :titolo="'L180'"
-                        :tipo1="'Socket'"
-                        :tipo2="'Switch'"
-                    ></macchina>
-                </v-col>
-                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <macchina
-                        :config="l232"
-                        :titolo="'L232'"
-                        :tipo1="'Socket'"
-                        :tipo2="'Switch'"
-                    ></macchina>
-                </v-col>
-                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <macchina
-                        :config="l2020"
-                        :titolo="'L2020'"
-                        :tipo1="'Switch'"
-                        :tipo2="'Switch'"
-                    ></macchina>
-                </v-col>
-                <v-col class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <macchina
-                        :config="l2020"
-                        :titolo="'L2021'"
-                        :tipo1="'Switch'"
-                        :tipo2="'Switch'"
+                        :config="macchina.config"
+                        :titolo="macchina.titolo"
                     ></macchina>
                 </v-col>
             </v-row>
@@ -59,17 +37,40 @@ export default {
     },
     data() {
         return {
-            isFake: false
+            isFake: false,
+            macchine: []
         };
     },
     mounted() {
         this.isFake = isFake();
-        this.loadDati();
+        this.caricaDati();
         setInterval(() => {
-            this.loadDati();
+            this.caricaDati();
         }, CiclaturaConfig.INTERVALLO_CHECK);
     },
     computed: {
+        //  Size della colonna Macchina
+        sizeCols: function () {
+            let result = 6;
+            switch (this.$vuetify.breakpoint.name) {
+                case 'xs':
+                    result = 12;
+                    break;
+                case 'sm':
+                    result = 6;
+                    break;
+                case 'md':
+                    result = 6;
+                    break;
+                case 'lg':
+                    result = 6;
+                    break;
+                case 'xl':
+                    result = 3;
+                    break;
+            }
+            return result;
+        },
         ...mapGetters({
             l180: 'Ciclatura/getL180',
             l232: 'Ciclatura/getL232',
@@ -79,7 +80,28 @@ export default {
     methods: {
         ...mapActions({
             loadDati: 'Ciclatura/loadDati'
-        })
+        }),
+        caricaDati() {
+            this.loadDati();
+            this.macchine = [
+                {
+                    config: this.l180,
+                    titolo: 'L180'
+                },
+                {
+                    config: this.l232,
+                    titolo: 'L232'
+                },
+                {
+                    config: this.l2020,
+                    titolo: 'L2020'
+                },
+                {
+                    config: this.l180,
+                    titolo: 'L2021'
+                }
+            ];
+        }
     }
 };
 </script>
