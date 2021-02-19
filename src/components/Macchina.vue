@@ -11,26 +11,15 @@
             </v-col>
         </v-row>
 
-        <!-- Tolto la divisione colonne per tipo di prodotto perchè non tutte le macchine hanno numeri uguali di stalli prese e switch, questo crea layout non uniformi  -->
-        <!-- Tipo prodotto 2 colonne -->
-        <!-- <v-row>
-            <v-col cols="6">
-                <tipo-stallo :titolo="tipo1"></tipo-stallo>
-            </v-col>
-            <v-col cols="6">
-                <tipo-stallo :titolo="tipo2"></tipo-stallo>
-            </v-col>
-        </v-row> -->
         <!-- Box stalli 1 colonna -->
         <v-row>
             <v-col>
                 <!-- Lista stalli con 2 colonne per riga -->
-                <!-- class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6" -->
                 <v-row>
                     <v-col
                         v-for="(stallo, index) in config"
                         :key="index"
-                        class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-xs-12"
+                        :cols="sizeCols"
                     >
                         <v-spacer></v-spacer>
                         <stallo :params="stallo"></stallo>
@@ -55,7 +44,30 @@ export default {
         return {};
     },
     mounted() {},
-    computed: {},
+    computed: {
+        //  Size della colonna Stallo
+        sizeCols: function () {
+            let result = 6;
+            switch (this.$vuetify.breakpoint.name) {
+                case 'xs':
+                    result = 6;
+                    break;
+                case 'sm':
+                    result = 6;
+                    break;
+                case 'md':
+                    result = 6;
+                    break;
+                case 'lg':
+                    result = 6;
+                    break;
+                case 'xl':
+                    result = 6;
+                    break;
+            }
+            return result;
+        }
+    },
     methods: {}
 };
 </script>
